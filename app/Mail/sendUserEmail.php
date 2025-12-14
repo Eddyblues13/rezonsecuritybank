@@ -32,7 +32,7 @@ class sendUserEmail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'CapRockTrustBank TEAM',
+            subject: 'Rezon Security Bank TEAM',
         );
     }
 
@@ -47,7 +47,7 @@ class sendUserEmail extends Mailable
             view: 'mail.user',
             with: [
                 'data' => $this->data,
-                
+
             ],
         );
     }

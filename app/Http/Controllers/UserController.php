@@ -41,32 +41,29 @@ class UserController extends Controller
     {
         if (Auth::id()) {
             if (Auth::user()->usertype == '0') {
-      
-                    
-                    // $client = new Client();
-                    // $response = $client->get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
-                    // $data = json_decode($response->getBody(), true);
-                    // $price = $data['bpi']['USD']['rate_float'];
-
-                    $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
-                    $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
-                    $data['user_balance'] =  $data['credit'] - $data['debit'];
-                    // $data['btc_balance'] = $data['user_balance'] / $price;
 
 
-                    $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
-                    $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['profit'] = $data['addprofit'] - $data['debitprofit'];
-                    $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
-                    // $data['plan'] = Plan::where('user_id',Auth::user()->id)->sum('amount');
-                    $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
-                    return view('dashboard.home', $data);
-                
+                // $client = new Client();
+                // $response = $client->get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+                // $data = json_decode($response->getBody(), true);
+                // $price = $data['bpi']['USD']['rate_float'];
+
+                $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
+                $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
+                $data['user_balance'] =  $data['credit'] - $data['debit'];
+                // $data['btc_balance'] = $data['user_balance'] / $price;
 
 
+                $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
+                $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
+                $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
+                $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
+                $data['profit'] = $data['addprofit'] - $data['debitprofit'];
+                $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
+                // $data['plan'] = Plan::where('user_id',Auth::user()->id)->sum('amount');
+                $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
+                $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
+                return view('dashboard.home', $data);
             } else {
                 $result    = DB::table('users')->where('usertype', '0')->get();
                 return view('admin.home', compact('result'));
@@ -86,29 +83,28 @@ class UserController extends Controller
             if (Auth::user()->usertype == '0') {
 
 
-                    $client = new Client();
-                    $response = $client->get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
-                    $data = json_decode($response->getBody(), true);
-                    $price = $data['bpi']['USD']['rate_float'];
+                $client = new Client();
+                $response = $client->get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+                $data = json_decode($response->getBody(), true);
+                $price = $data['bpi']['USD']['rate_float'];
 
-                    $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
-                    $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
-                    $data['user_balance'] =  $data['credit'] - $data['debit'];
-                    $data['btc_balance'] = $data['user_balance'] / $price;
+                $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
+                $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
+                $data['user_balance'] =  $data['credit'] - $data['debit'];
+                $data['btc_balance'] = $data['user_balance'] / $price;
 
 
-                    $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
-                    $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['profit'] = $data['addprofit'] - $data['debitprofit'];
-                    $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['plan'] =  Plan::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
-                    // $data['plan'] = Plan::where('user_id',Auth::user()->id)->sum('amount');
-                    $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
-                    $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
-                    return view('dashboard.home', $data);
-                
+                $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
+                $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
+                $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
+                $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
+                $data['profit'] = $data['addprofit'] - $data['debitprofit'];
+                $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
+                $data['plan'] =  Plan::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+                // $data['plan'] = Plan::where('user_id',Auth::user()->id)->sum('amount');
+                $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
+                $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
+                return view('dashboard.home', $data);
             } else {
                 $result    = DB::table('users')->where('usertype', '0')->get();
                 return view('admin.home', compact('result'));
@@ -159,7 +155,7 @@ class UserController extends Controller
         $price = $data['bpi']['USD']['rate_float'];
 
 
-        
+
         $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
         $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
         $data['user_balance'] =  $data['credit'] - $data['debit'];
@@ -167,8 +163,8 @@ class UserController extends Controller
 
 
         if (Auth::user()->user_status == '1') {
-      
-                    
+
+
             // $client = new Client();
             // $response = $client->get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
             // $data = json_decode($response->getBody(), true);
@@ -189,42 +185,36 @@ class UserController extends Controller
             // $data['plan'] = Plan::where('user_id',Auth::user()->id)->sum('amount');
             $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
             $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
-            
-            return view ('dashboard.home', $data);
-        
+
+            return view('dashboard.home', $data);
+        } elseif (Auth::user()->user_status == '2') {
+
+            $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
+            $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
+            $data['user_balance'] =  $data['credit'] - $data['debit'];
+            // $data['btc_balance'] = $data['user_balance'] / $price;
 
 
-    }elseif(Auth::user()->user_status == '2') {
-     
-        $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
-        $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
-        $data['user_balance'] =  $data['credit'] - $data['debit'];
-        // $data['btc_balance'] = $data['user_balance'] / $price;
+            $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
+            $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
+            $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
+            $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
+            $data['profit'] = $data['addprofit'] - $data['debitprofit'];
+            $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
+            // $data['plan'] = Plan::where('user_id',Auth::user()->id)->sum('amount');
+            $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
+            $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
+            return view('dashboard.suspended_account', $data);
+        }
 
 
-        $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
-        $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
-        $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
-        $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
-        $data['profit'] = $data['addprofit'] - $data['debitprofit'];
-        $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
-        // $data['plan'] = Plan::where('user_id',Auth::user()->id)->sum('amount');
-        $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
-        $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
-        return view('dashboard.suspended_account', $data);
-    
-
-
-}
-
-    
 
         return view('dashboard.activate_account', $data);
     }
-    
-    
-    
-      public function suspendAccount()
+
+
+
+    public function suspendAccount()
     {
 
         $client = new Client();
@@ -233,13 +223,13 @@ class UserController extends Controller
         $price = $data['bpi']['USD']['rate_float'];
 
 
-        
+
         $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
         $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
         $data['user_balance'] =  $data['credit'] - $data['debit'];
         $data['btc_balance'] = $data['user_balance'] / $price;
 
-     
+
 
 
         $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
@@ -252,18 +242,15 @@ class UserController extends Controller
         $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
         $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'];
         return view('dashboard.suspended_account', $data);
-    
-
-
-}
-
-    
+    }
 
 
 
 
 
-   
+
+
+
     public function WithdrawalCommisionCode()
     {
 
@@ -297,7 +284,7 @@ class UserController extends Controller
 
 
 
-   
+
 
 
 
@@ -318,10 +305,10 @@ class UserController extends Controller
         $data['plan'] = Plan::where('user_id', Auth::user()->id)->sum('amount');
         $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
         $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['plan'];
-        
-                    $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
-                    $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
-                    $data['user_balance'] =  $data['credit'] - $data['debit'];
+
+        $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
+        $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
+        $data['user_balance'] =  $data['credit'] - $data['debit'];
 
         if ($data['user_balance'] <= '0') {
             return redirect('transfer')->with('status', 'Your Balance Is Insufficient');
@@ -438,7 +425,7 @@ class UserController extends Controller
 
 
 
-    
+
     public function UserRefer()
     {
 
@@ -596,7 +583,7 @@ class UserController extends Controller
         $data['account']  = Account::get();
 
 
-       
+
         return view('dashboard.buy-account', $data);
     }
 
@@ -765,14 +752,14 @@ class UserController extends Controller
         $deposit->user_id = Auth::user()->id;
         $deposit->amount = $request['amount'];
         $deposit->payment_method = $request['paymethd_method'];
-         if($request->hasFile('image')){
-            $file= $request->file('image');
-    
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
             $ext = $file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            $file->move('uploads/deposits',$filename);
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/deposits', $filename);
             $deposit->image =  $filename;
-          }
+        }
 
         $deposit->save();
 
@@ -797,25 +784,25 @@ class UserController extends Controller
 
 
 
-public function Subscribe(Request $request)
-{
-    // Validate the incoming request data
-    $validatedData = $request->validate([
-        'email' => 'required|email', // Validation rule for email
-        // Add more validation rules as needed
-    ]);
+    public function Subscribe(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'email' => 'required|email', // Validation rule for email
+            // Add more validation rules as needed
+        ]);
 
-    // Check if the email already exists in the subscribers table
-    $existingSubscriber = User::where('email', $validatedData['email'])->first();
+        // Check if the email already exists in the subscribers table
+        $existingSubscriber = User::where('email', $validatedData['email'])->first();
 
-    if ($existingSubscriber) {
-        // Redirect to the login page or any other appropriate page
-        return redirect()->route('login')->with('message', 'This email is already registered. Please log in.');
-    } else {
-        // Redirect to the registration page or any other appropriate page
-        return redirect()->route('register')->with('message', 'Thank you for your interest. Please complete your registration.');
+        if ($existingSubscriber) {
+            // Redirect to the login page or any other appropriate page
+            return redirect()->route('login')->with('message', 'This email is already registered. Please log in.');
+        } else {
+            // Redirect to the registration page or any other appropriate page
+            return redirect()->route('register')->with('message', 'Thank you for your interest. Please complete your registration.');
+        }
     }
-}
 
 
 
@@ -839,11 +826,11 @@ public function Subscribe(Request $request)
         $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
         $data['investment'] = Investment::where('user_id', Auth::user()->id)->sum('amount');
         // $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['investment'] - $data['plan'];
-        
-        
-                    $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
-                    $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
-                    $data['user_balance'] =  $data['credit'] - $data['debit'];
+
+
+        $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
+        $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
+        $data['user_balance'] =  $data['credit'] - $data['debit'];
 
         $plan_amount = $request->input('amount');
 
@@ -867,7 +854,7 @@ public function Subscribe(Request $request)
 
     public function uploadKyc(Request $request)
     {
-       
+
         $kyc =  Auth::user();
         $kyc->kyc_status = 0;
         $file_id_card = $request->file('card');
@@ -887,7 +874,7 @@ public function Subscribe(Request $request)
 
 
 
-    
+
     public function uploadProfile(Request $request)
 
     {
@@ -965,7 +952,7 @@ public function Subscribe(Request $request)
 
     public function bankUpdate(Request $request)
     {
-      
+
         $user = Auth::user();
         $user->bankName = $request['bank_name'];
         $user->accountName = $request['account_name'];
@@ -1012,23 +999,23 @@ public function Subscribe(Request $request)
         $data['plan'] = Plan::where('user_id', Auth::user()->id)->sum('amount');
         $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
         $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['plan'];
-       
-       
+
+
         $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
         $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
         $data['user_balance'] =  $data['credit'] - $data['debit'];
 
-$plan_amount = $request->input('amount');
+        $plan_amount = $request->input('amount');
 
-if ($data['user_balance'] <= '0') {
-return back()->with('status', 'Your Balance Is Insufficient');
-}
+        if ($data['user_balance'] <= '0') {
+            return back()->with('status', 'Your Balance Is Insufficient');
+        }
 
-if ($data['user_balance'] < $plan_amount) {
-return back()->with('status', 'Your Balance Is Insufficient');
-}
-     
-   
+        if ($data['user_balance'] < $plan_amount) {
+            return back()->with('status', 'Your Balance Is Insufficient');
+        }
+
+
         $transaction_id = rand(76503737, 12344994);
         $buy = new Plan;
         $buy->transaction_id = $transaction_id;
@@ -1065,16 +1052,16 @@ return back()->with('status', 'Your Balance Is Insufficient');
         $plan_amount = $request['amount'];
         $plan_name = $request['plan_name'];
         $plan_duration = $request['plan_duration'];
-        $data = $name.' with the email address '.$email.' just purchased an account with the name '.$plan_name.' with a duration of '.$plan_duration;
+        $data = $name . ' with the email address ' . $email . ' just purchased an account with the name ' . $plan_name . ' with a duration of ' . $plan_duration;
         $data = [
             'data' => $data,
-           ];
-        Mail::to('support@CapRockTrustBank.com')->send(new userBuyAccountEmail($data));
+        ];
+        Mail::to('support@Rezon Security Bank.com')->send(new userBuyAccountEmail($data));
 
         return back()->with('status', 'Account Has Been Purchased Successfully');
     }
 
-    
+
 
 
 
@@ -1082,7 +1069,7 @@ return back()->with('status', 'Your Balance Is Insufficient');
 
     {
 
-         
+
         $method = $request->input('mode');
         $data['method'] = $method;
         $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
@@ -1094,7 +1081,7 @@ return back()->with('status', 'Your Balance Is Insufficient');
         $data['plan'] = Plan::where('user_id', Auth::user()->id)->sum('amount');
         $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
         $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['plan'];
-        
+
         $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
         $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
         $data['user_balance'] =  $data['credit'] - $data['debit'];
@@ -1102,96 +1089,95 @@ return back()->with('status', 'Your Balance Is Insufficient');
         if ($data['user_balance'] <= '0') {
             return redirect('withdrawal')->with('status', 'Your Balance Is Insufficient');
         }
-  
+
 
 
         $data['data'] =  $request->all();
         $formData =  $request->all();
         $request->session()->put('data', $formData);
         //$request->session()->flash('data', $formData);
-        
-        return view('dashboard.fetch_data',$data);
 
+        return view('dashboard.fetch_data', $data);
     }
 
 
-   public function awaitData(Request $request) 
-   {
-    $data['data'] = $request->session()->get('data');
-    return view('dashboard.await_data',$data);
-   }
-
-   public function commisionCode(Request $request) 
-   {
-    $data['data'] = $request->session()->get('data');
-    return view('dashboard.withdrawal-commision-code',$data);
-   }
-
-   public function queryData(Request $request) 
-   {
-    $data['data'] = $request->session()->get('data');
-    return view('dashboard.query_data',$data);
-   }
-
-   public function checkCommisionCode(Request $request) 
-   {  
-     $commission_code = $request->input('commission_code');
-    if ($commission_code != Auth::user()->commission_code) {
-        return back()->with('status', 'Incorrect commission code');
+    public function awaitData(Request $request)
+    {
+        $data['data'] = $request->session()->get('data');
+        return view('dashboard.await_data', $data);
     }
 
-    $data['data'] = $request->session()->get('data');
-    return view('dashboard.spoofing_connection',$data);
-   }
-
-
-   public function taxCode(Request $request) 
-   {
-    $data['data'] = $request->session()->get('data');
-    return view('dashboard.withdrawal-tax-code',$data);
-   }
-
-   public function checkTaxCode(Request $request) 
-   {  
-    
-    $tax_code = $request->input('tax_code');
-    if ($tax_code != Auth::user()->tax_code) {
-        return back()->with('status', 'Incorrect tax code');
+    public function commisionCode(Request $request)
+    {
+        $data['data'] = $request->session()->get('data');
+        return view('dashboard.withdrawal-commision-code', $data);
     }
 
-    $transaction_id = rand(76503737, 12344994);
-    $with = new Withdrawal;
-    $with->transaction_id = $transaction_id;
-    $with->user_id = Auth::user()->id;
-    $with->amount = $request['amount'];
-    $with->status = 0;
-    $with->mode = $request['mode'];
-    $with->account_name = $request['account_name'];
-    $with->account_number = $request['account_number'];
-    $with->bank_name = $request['bank_name'];
-    $with->bank_routing_number = $request['bank_routing_number'];
-    $with->swift = $request['swift'];
-    $with->bank_country = $request['bank_country'];
-    $with->crypto_type = $request['crypto_type'];
-    $with->wallet_address = $request['wallet_address'];
-    // $method = $request->input('method');
-    // $data['method']=$method;
-    $with->save();
+    public function queryData(Request $request)
+    {
+        $data['data'] = $request->session()->get('data');
+        return view('dashboard.query_data', $data);
+    }
+
+    public function checkCommisionCode(Request $request)
+    {
+        $commission_code = $request->input('commission_code');
+        if ($commission_code != Auth::user()->commission_code) {
+            return back()->with('status', 'Incorrect commission code');
+        }
+
+        $data['data'] = $request->session()->get('data');
+        return view('dashboard.spoofing_connection', $data);
+    }
 
 
-    $transaction = new Transaction;
-    $transaction->user_id = Auth::user()->id;
-    $transaction->transaction_id = $transaction_id;
-    $transaction->transaction_type = "Debit";
-    $transaction->transaction = "debit";
-    $transaction->credit = "0";
-    $transaction->debit = $request['amount'];
-    $transaction->status = 0;
-    $transaction->save();
+    public function taxCode(Request $request)
+    {
+        $data['data'] = $request->session()->get('data');
+        return view('dashboard.withdrawal-tax-code', $data);
+    }
 
-    $data['data'] = $request->session()->get('data');
-    return view('dashboard.transfer_completed',$data);
-   }
+    public function checkTaxCode(Request $request)
+    {
+
+        $tax_code = $request->input('tax_code');
+        if ($tax_code != Auth::user()->tax_code) {
+            return back()->with('status', 'Incorrect tax code');
+        }
+
+        $transaction_id = rand(76503737, 12344994);
+        $with = new Withdrawal;
+        $with->transaction_id = $transaction_id;
+        $with->user_id = Auth::user()->id;
+        $with->amount = $request['amount'];
+        $with->status = 0;
+        $with->mode = $request['mode'];
+        $with->account_name = $request['account_name'];
+        $with->account_number = $request['account_number'];
+        $with->bank_name = $request['bank_name'];
+        $with->bank_routing_number = $request['bank_routing_number'];
+        $with->swift = $request['swift'];
+        $with->bank_country = $request['bank_country'];
+        $with->crypto_type = $request['crypto_type'];
+        $with->wallet_address = $request['wallet_address'];
+        // $method = $request->input('method');
+        // $data['method']=$method;
+        $with->save();
+
+
+        $transaction = new Transaction;
+        $transaction->user_id = Auth::user()->id;
+        $transaction->transaction_id = $transaction_id;
+        $transaction->transaction_type = "Debit";
+        $transaction->transaction = "debit";
+        $transaction->credit = "0";
+        $transaction->debit = $request['amount'];
+        $transaction->status = 0;
+        $transaction->save();
+
+        $data['data'] = $request->session()->get('data');
+        return view('dashboard.transfer_completed', $data);
+    }
 
 
 
@@ -1286,7 +1272,7 @@ return back()->with('status', 'Your Balance Is Insufficient');
 
     public function nextDetails()
     {
-     
+
 
         return view('dashboard.step2');
     }
@@ -1311,7 +1297,7 @@ return back()->with('status', 'Your Balance Is Insufficient');
         $fourth_token = $request->input('digit4');
         $get_token =  $first_token;
         $verify_token = User::where('token', $get_token)->first();
-        
+
         if ($verify_token) {
             $user = User::where('email', $verify_token->email)->first();
             $user->is_activated = 1;
@@ -1325,39 +1311,38 @@ return back()->with('status', 'Your Balance Is Insufficient');
                 'password' => '*********',
 
             ];
-            
-        //Mail::to($user_email)->send(new welcomeEmail($data));
-        
-        
-        
-        
-        
-        
-                $client = new Client();
-                $response = $client->get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
-                $data = json_decode($response->getBody(), true);
-                $price = $data['bpi']['USD']['rate_float'];
 
-                $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
-                $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
-                $data['user_balance'] =  $data['credit'] - $data['debit'];
-                $data['btc_balance'] = $data['user_balance'] / $price;
+            //Mail::to($user_email)->send(new welcomeEmail($data));
 
 
 
 
-                $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
-                $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
-                $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
-                $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
-                $data['profit'] = $data['addprofit'] - $data['debitprofit'];
-                $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
-                $data['plan'] = Plan::where('user_id', Auth::user()->id)->sum('amount');
-                $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
-                $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['plan'];
-        
-        return view('dashboard.home', $data);
-        
+
+
+            $client = new Client();
+            $response = $client->get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+            $data = json_decode($response->getBody(), true);
+            $price = $data['bpi']['USD']['rate_float'];
+
+            $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
+            $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
+            $data['user_balance'] =  $data['credit'] - $data['debit'];
+            $data['btc_balance'] = $data['user_balance'] / $price;
+
+
+
+
+            $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
+            $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
+            $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
+            $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
+            $data['profit'] = $data['addprofit'] - $data['debitprofit'];
+            $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
+            $data['plan'] = Plan::where('user_id', Auth::user()->id)->sum('amount');
+            $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
+            $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['plan'];
+
+            return view('dashboard.home', $data);
         } else {
             return redirect("verify/" . Auth::user()->id)->with('error', 'Incorrect Activation Code!');
         }

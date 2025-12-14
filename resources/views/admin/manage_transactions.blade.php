@@ -6,7 +6,7 @@
 			<div class="alert alert-success mb-2">{{session('message')}}</div>
 			@endif
 			<div class="mt-2 mb-4">
-				<h1 class="title1 text-light">CapRockTrustBank users lists</h1>
+				<h1 class="title1 text-light">Rezon Security Bank users lists</h1>
 			</div>
 
 			<div>

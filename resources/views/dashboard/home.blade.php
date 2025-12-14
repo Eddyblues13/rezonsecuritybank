@@ -327,8 +327,7 @@ if ($currentHour >= 12 && $currentHour < 18) { $greeting='Good afternoon' ; } el
                                                     </ul>
                                                 </div>
                                                 <div class="modal-footer bg-light">
-                                                    <span class="sub-text text-primary">Proccessed by Cap Rock Trust
-                                                        Bank
+                                                    <span class="sub-text text-primary">Proccessed byRezon Security Bank
                                                         Digital banking services.</span>
                                                 </div>
                                             </div>
